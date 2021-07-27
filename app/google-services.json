@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "399912637728",
+    "project_id": "charm-service",
+    "storage_bucket": "charm-service.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399912637728:android:f2249769f1fd66e97cf345",
+        "android_client_info": {
+          "package_name": "com.collan.charm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399912637728-fu3f2430tljna8td7pmf4d23p82ot4gp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.collan.charm",
+            "certificate_hash": "86b0953cfcb0f204c32e5ca468767d1f5a9d5437"
+          }
+        },
+        {
+          "client_id": "399912637728-94k0j7oargrd9avji8caqnb646megdit.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL289KlrpyQM9kwXi5WV3DRSqAfj2PyaE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399912637728-94k0j7oargrd9avji8caqnb646megdit.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
