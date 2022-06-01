@@ -44,7 +44,7 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.StoriesH
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StoriesHolder holder, int position) {
+    public void onBindViewHolder(@NonNull StoriesAdapter.StoriesHolder holder, int position) {
 
         if (position == 0) {
 
@@ -56,55 +56,57 @@ public class StoriesAdapter extends RecyclerView.Adapter<StoriesAdapter.StoriesH
                 @Override
                 public void onClick(View v) {
 
-                    activity.startActivity(new Intent());
+                    activity.startActivity(new Intent(activity, StoryAddActivity.class));
+
+                }
+            });
+
+        }else {
+
+            Glide.with(activity)
+                    .load(list.get(position).getVideoUrl())
+                    .timeout(6500)
+                    .into(holder.imageView);
+
+            holder.imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (position == 0) {
+                        //new story
+
+                        Dexter.withContext(activity)
+                                .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
+                                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                                .withListener(new MultiplePermissionsListener() {
+                                    @Override
+                                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
+
+                                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+
+                                            activity.startActivity(new Intent(activity, StoryAddActivity.class));
+
+                                        } else {
+                                            Toast.makeText(activity, "Please allow permission from the settings.", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+
+                                        permissionToken.continuePermissionRequest();
+                                    }
+                                }).check();
+
+                    } else {
+                        //open story
+                    }
 
                 }
             });
 
         }
-
-        Glide.with(activity)
-                .load(list.get(position).getVideoUrl())
-                .timeout(6500)
-                .into(holder.imageView);
-
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (position == 0) {
-                    //new story
-
-                    Dexter.withContext(activity)
-                            .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
-                                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                            .withListener(new MultiplePermissionsListener() {
-                                @Override
-                                public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
-
-                                    if (multiplePermissionsReport.areAllPermissionsGranted()) {
-
-                                        activity.startActivity(new Intent(activity, StoryAddActivity.class));
-
-                                    }else{
-                                        Toast.makeText(activity, "Please allow permission from the settings.", Toast.LENGTH_SHORT).show();
-                                    }
-
-                                }
-
-                                @Override
-                                public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
-
-                                    permissionToken.continuePermissionRequest();
-                                }
-                            }).check();
-
-                }else{
-                    //open story
-                }
-
-            }
-        });
 
     }
 

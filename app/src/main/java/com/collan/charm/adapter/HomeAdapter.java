@@ -37,7 +37,8 @@ import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder>{
+public class
+HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder>{
 
     Activity context;
     private final List<HomeModel> list;
